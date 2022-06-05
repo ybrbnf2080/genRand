@@ -70,7 +70,8 @@ func drawHorisontal(pict [][]int, sybmolisator func(int) string, olorPallet map[
 			//if "" == unic[summ] {
 			//	unic[summ] = string(rune(len(unic)))
 			//}
-			fmt.Print(sybmolisator(summ))
+
+			fmt.Print( sybmolisator(summ, ))
 		}
 		fmt.Println("")
 
