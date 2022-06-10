@@ -72,6 +72,7 @@ func drawHorisontal(pict [][]int, sybmolisator func(int) string, olorPallet map[
 			//}
 
 			fmt.Print( sybmolisator(summ, ))
+			fmt.Print(sybmolisator(summ))
 		}
 		fmt.Println("")
 
@@ -124,6 +125,16 @@ func crop(pict [][]int, height int, widht int) [][]int {
 		pict = pict[endWidth : len(pict)-endWidth]
 	}
 
+<<<<<<< HEAD
+=======
+	if endHeight > 0 && height > 0{
+		endWidth = endWidth + 1
+	}
+	if endWidth > 0 && widht > 0 {
+		pict = pict[endWidth : len(pict)-endWidth]
+	}
+
+>>>>>>> 64d12ee (lol)
 	if endHeight > 0 && height > 0 {
 
 		for i, row := range pict {
