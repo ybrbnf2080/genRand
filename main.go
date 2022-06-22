@@ -53,34 +53,21 @@ func forInImage(image image.Image) {
 	pict := wider(pictDefoult)
 	pict = compress(pict, CompressCoof)
 	pict = crop(pict, Height, Widht)
-	fmt.Println("compressed")
-	fmt.Println("croped")
 	draw(pict, sybmolSel(ColorMap))
 	stdin := *bufio.NewReaderSize(os.Stdin, 64)
-
 	for {
-		pict = wider(pictDefoult)
-		pict = compress(pict, CompressCoof)
-		pict = crop(pict, Height, Widht)
-		fmt.Println("compressed")
-		fmt.Println("croped")
-		draw(pict, sybmolSel(ColorMap))
-		b := nextByte(&stdin)
-		fmt.Println("I got the byte", b, "("+string(b)+")")
-		switch string(b) {
-
-		case "+":
-			CompressCoof = CompressCoof + 1
-		case "-":
-			CompressCoof = CompressCoof - 1
-		case "q":
-			os.Exit(1)
-		}
+		controler(stdin)
+		go func() {
+			pict = wider(pictDefoult)
+			pict = compress(pict, CompressCoof)
+			pict = crop(pict, Height, Widht)
+			draw(pict, sybmolSel(ColorMap))
+		}()
 	}
 
 }
 
-var Widht, Height int
+var Widht, Height, HeightOfset, WidhtOfset int
 
 func init() {
 	cmd := exec.Command("stty", "size")
@@ -110,7 +97,7 @@ func init() {
 
 func main() {
 	//ColorShift = 000
-	imagePath := flag.Arg(0) //| "boobs.jpg" //"lol.jpg"
+	imagePath := flag.Arg(0) //| "boobs.jpg" //"lol.jpg"l
 
 	file, err := os.Open(imagePath)
 	if err != nil {

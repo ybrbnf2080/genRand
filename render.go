@@ -9,7 +9,6 @@ import (
 	_ "image/png"
 	"os"
 	"sync"
-	"time"
 )
 
 func convert(image image.Image) [][]int {
@@ -32,7 +31,7 @@ func draw(pict [][]int, sybmolisator func(int) string) {
 	state := make([]string, len(pict))
 	var wg sync.WaitGroup
 	wg.Add(len(pict))
-	start := time.Now()
+	//start := time.Now()
 
 	printer := *bufio.NewWriter(os.Stdout)
 
@@ -57,7 +56,7 @@ func draw(pict [][]int, sybmolisator func(int) string) {
 		printer.WriteString(state[i] + "\n")
 	}
 	printer.Flush()
-	fmt.Println("\n", time.Since(start))
+	//fmt.Println("\n", time.Since(start))
 
 }
 
@@ -71,7 +70,7 @@ func drawHorisontal(pict [][]int, sybmolisator func(int) string, olorPallet map[
 			//	unic[summ] = string(rune(len(unic)))
 			//}
 
-			fmt.Print( sybmolisator(summ, ))
+			fmt.Print(sybmolisator(summ))
 			fmt.Print(sybmolisator(summ))
 		}
 		fmt.Println("")
@@ -113,32 +112,48 @@ func compress(pict [][]int, compCoof int) [][]int {
 }
 
 func crop(pict [][]int, height int, widht int) [][]int {
+	// Calc croped area
 	endHeight := (len(pict[0]) - height) / 2
 	endWidth := (len(pict) - widht) / 2
+	// check even`t size
 	if (len(pict[0])-height)%2 != 0 {
 		endHeight = endHeight + 1
 	}
 	if (len(pict[0])-widht)%2 != 0 {
 		endWidth = endWidth + 1
 	}
+	if endWidth-WidhtOfset <= 0 {
+		WidhtOfset = WidhtOfset - 1
+	}
+	if endHeight+HeightOfset <= 0 {
+		HeightOfset = HeightOfset + 1
+	}
+	if endWidth-WidhtOfset <= 0 {
+		WidhtOfset = endWidth
+	}
+	if endHeight+HeightOfset <= 0 {
+		HeightOfset = endHeight
+	}
+	// Crop
 	if endWidth > 0 && widht > 0 {
-		pict = pict[endWidth : len(pict)-endWidth]
+		if len(pict) < len(pict)-endWidth-WidhtOfset {
+
+		} else {
+			pict = pict[endWidth-WidhtOfset : len(pict)-endWidth-WidhtOfset]
+		}
+
 	}
 
-<<<<<<< HEAD
-=======
-	if endHeight > 0 && height > 0{
-		endWidth = endWidth + 1
-	}
-	if endWidth > 0 && widht > 0 {
-		pict = pict[endWidth : len(pict)-endWidth]
-	}
-
->>>>>>> 64d12ee (lol)
 	if endHeight > 0 && height > 0 {
-
 		for i, row := range pict {
-			pict[i] = row[endHeight : len(row)-endHeight]
+			if len(row) <= 0 {
+				pict[i] = make([]int, len(pict[0]))
+				continue
+			}
+			if len(row) < len(row)-endHeight+HeightOfset {
+				//row = append(pict[i], 0)
+			}
+			pict[i] = row[endHeight+HeightOfset : len(row)-endHeight+HeightOfset]
 		}
 	}
 	return pict

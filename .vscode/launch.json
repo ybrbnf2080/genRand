@@ -11,7 +11,7 @@
     "mode": "auto",
     "remotePath": "${workspaceRoot}",
     "program": "${workspaceRoot}",
-    "args": ["/home/ybrbnf/Downloads/boobs2.jpg"],
+    "args": ["/home/ybrbnf/Downloads/boobs.jpg"],
     "console": "integratedTerminal"
 }
     ]
