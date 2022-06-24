@@ -61,7 +61,7 @@ func forInImage(image image.Image) {
 			pict = wider(pictDefoult)
 			pict = compress(pict, CompressCoof)
 			pict = crop(pict, Height, Widht)
-			draw(pict, sybmolSel(ColorMap))
+			draw(pict, sybmolSel(ColorMap, ColorShift))
 		}()
 	}
 
