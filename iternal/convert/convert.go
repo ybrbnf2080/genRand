@@ -1,5 +1,9 @@
 package convert
 
+import (
+	"github.com/ybrbnf/genRand/iternal/transform"
+)
+
 func crop(pict [][]int, transform Transform.Transform) [][]int {
 	// Calc croped area
 	endHeight := (len(pict[0]) - height) / 2
