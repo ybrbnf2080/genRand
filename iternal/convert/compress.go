@@ -1,6 +1,6 @@
 package convert
 
-func compress(pict [][]int, compCoof int) [][]int {
+func Compress(pict [][]int, compCoof int) [][]int {
 	// endWidth := len(pict) / 2
 	//endHeight := len(pict[0]) / 2
 	if compCoof <= 1 {

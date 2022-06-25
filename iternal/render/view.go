@@ -4,7 +4,7 @@ import (
 	"sort"
 )
 
-func sybmolSel(colorMap map[int]string, ColorShift int) func(int) string {
+func SybmolSel(colorMap map[int]string, ColorShift int) func(int) string {
 	keys := make([]int, 0)
 	for k, _ := range colorMap {
 		keys = append(keys, k)

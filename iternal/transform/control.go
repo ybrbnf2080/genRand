@@ -13,7 +13,7 @@ type Transform struct {
 	CompressCoof int
 }
 
-func NewTransform(compress int, height int, width int) *Transform {
+func NewTransform(height int, width int, compress int) Transform {
 
 	var transform = Transform{
 		Height:       height,
@@ -23,7 +23,7 @@ func NewTransform(compress int, height int, width int) *Transform {
 		CompressCoof: compress,
 	}
 
-	return &transform
+	return transform
 }
 
 func (t *Transform) Controler(stdin bufio.Reader) {

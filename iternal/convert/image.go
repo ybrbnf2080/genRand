@@ -1,12 +1,16 @@
 package convert
 
 import (
-	"bufio"
 	"image"
-	"os"
+	"image/jpeg"
 )
 
-func convert(image image.Image) [][]int {
+func init() {
+	// damn important or else At(), Bounds() functions will
+	// caused memory pointer error!!
+	image.RegisterFormat("jpeg", "jpeg", jpeg.Decode, jpeg.DecodeConfig)
+}
+func Convert(image image.Image) [][]int {
 	resolution := image.Bounds()
 	var pict [][]int
 	for i := 1; i < resolution.Dy(); i++ {
@@ -21,33 +25,4 @@ func convert(image image.Image) [][]int {
 
 	}
 	return pict
-}
-
-func draw(pict [][]int, sybmolisator func(int) string) {
-	state := make([]string, len(pict))
-	//start := time.Now()
-
-	printer := *bufio.NewWriter(os.Stdout)
-
-	for i := range state {
-		go func(i int) {
-			var row string
-			for _, w := range pict[i] {
-				summ := w
-				//if "" == unic[summ] {
-				//	unic[summ] = string(rune(len(unic)))
-				//}
-				row = row + sybmolisator(summ)
-
-			}
-			state[i] = row
-		}(i)
-	}
-
-	for i := range state {
-		printer.WriteString(state[i] + "\n")
-	}
-	printer.Flush()
-	//fmt.Println("\n", time.Since(start))
-
 }

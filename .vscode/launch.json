@@ -10,7 +10,7 @@
     "request": "launch",
     "mode": "auto",
     "remotePath": "${workspaceRoot}",
-    "program": "${workspaceRoot}",
+    "program": "${workspaceRoot}/cmd/app",
     "args": ["/home/ybrbnf/Downloads/boobs.jpg"],
     "console": "integratedTerminal"
 }
