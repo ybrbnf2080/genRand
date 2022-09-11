@@ -33,3 +33,12 @@ func App(image image.Image, transform transform.Transform, draw func([][]int)) {
 	}
 
 }
+func Convert(image image.Image, transform transform.Transform, draw func([][]int) string) string {
+	pictDefoult := convert.Convert(image)
+	//dotPict:=ViewNormal(pict, 60000)
+	//dotPict2:= dotViewer(dotPict)
+	pict := convert.Wider(pictDefoult)
+	pict = convert.Compress(pict, transform.CompressCoof)
+	pict = convert.Crop(pict, &transform)
+	return draw(pict)
+}
