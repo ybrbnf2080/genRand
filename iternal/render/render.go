@@ -67,7 +67,7 @@ func Drawer(sybmolisator func(int) string) func([][]int) string {
 		wg.Wait()
 		var endPict string
 		for _, r := range state {
-			endPict = endPict + r + "/n"
+			endPict = endPict + r + "\n"
 		}
 		return endPict
 	}
