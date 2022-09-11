@@ -41,32 +41,34 @@ func NewDrawer(sybmolisator func(int) string) func([][]int) {
 	}
 }
 
-func Drawer(pict [][]int, sybmolisator func(int) string) string {
-	var wg sync.WaitGroup
+func Drawer(sybmolisator func(int) string) func([][]int) string {
+	return func(pict [][]int) string{
+		var wg sync.WaitGroup
 
-	wg.Add(len(pict))
-	state := make([]string, len(pict))
+		wg.Add(len(pict))
+		state := make([]string, len(pict))
 
-	for i := range state {
-		go func(i int) {
-			var row string
-			for _, w := range pict[i] {
-				summ := w
-				//if "" == unic[summ] {
-				//	unic[summ] = string(rune(len(unic)))
-				//}
-				row = row + sybmolisator(summ)
+		for i := range state {
+			go func(i int) {
+				var row string
+				for _, w := range pict[i] {
+					summ := w
+					//if "" == unic[summ] {
+					//	unic[summ] = string(rune(len(unic)))
+					//}
+					row = row + sybmolisator(summ)
 
-			}
-			state[i] = row
-			wg.Done()
+				}
+				state[i] = row
+				wg.Done()
 
-		}(i)
+			}(i)
+		}
+		wg.Wait()
+		var endPict string
+		for _, r := range state {
+			endPict = endPict + r + "/n"
+		}
+		return endPict
 	}
-	wg.Wait()
-	var endPict string
-	for _, r := range state {
-		endPict = endPict + r + "/n"
-	}
-	return endPict
 }
