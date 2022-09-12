@@ -9,6 +9,8 @@ func init() {
 	// damn important or else At(), Bounds() functions will
 	// caused memory pointer error!!
 	image.RegisterFormat("jpeg", "jpeg", jpeg.Decode, jpeg.DecodeConfig)
+	image.RegisterFormat("png", "png", png.Decode, png.DecodeConfig)
+
 }
 func Convert(image image.Image) [][]int {
 	resolution := image.Bounds()
