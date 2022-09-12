@@ -3,6 +3,7 @@ package convert
 import (
 	"image"
 	"image/jpeg"
+	"image/png"
 )
 
 func init() {
