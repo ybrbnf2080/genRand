@@ -3,7 +3,7 @@ package config
 import (
 	"flag"
 	"fmt"
-	"os"
+  "os"
 	"os/exec"
 	"strconv"
 	"strings"
@@ -33,6 +33,7 @@ var ColorMap = map[int]string{
 }
 var Transforms transform.Transform
 var ColorShift int
+var Static bool
 
 func init() {
 	var Widht, Height, CompressCoof int
@@ -43,11 +44,14 @@ func init() {
 	if err != nil {
 		fmt.Print("Error parse size you terminal")
 		Height = 40
-		return
+		Widht = 40
+		
+	} else {
+		fmt.Print("l")
+		slice := strings.Fields(size)
+		Widht, _ = strconv.Atoi(slice[0])
+		Height, _ = strconv.Atoi(slice[1])
 	}
-	slice := strings.Fields(size)
-	Widht, _ = strconv.Atoi(slice[0])
-	Height, _ = strconv.Atoi(slice[1])
 	//Widht, Height = 20, 50
 
 	flag.IntVar(&CompressCoof, "comp", -1, "compression cooficent")
@@ -55,6 +59,7 @@ func init() {
 
 	flag.IntVar(&Height, "h", Height, "height crop resolution")
 	flag.IntVar(&Widht, "w", Widht, "Widht crop resolution")
+	flag.BoolVar(&Static, "s", false, "Static image rerturn")
 	flag.Parse()
 	Transforms = transform.NewTransform(Height, Widht, CompressCoof)
 

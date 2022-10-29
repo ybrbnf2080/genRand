@@ -9,10 +9,10 @@ import (
 )
 
 func init() {
-	UnsetIFlag(syscall.IXON)
-	UnsetLFlag(syscall.IEXTEN)
-	UnsetLFlag(syscall.ECHO)
-	UnsetLFlag(syscall.ISIG)
+	//UnsetIFlag(syscall.IXON)
+	//UnsetLFlag(syscall.IEXTEN)
+	//UnsetLFlag(syscall.ECHO)
+	//UnsetLFlag(syscall.ISIG)
 	UnsetLFlag(syscall.ICANON)
 	UnsetIFlag(syscall.ICRNL)
 	UnsetIFlag(syscall.IXON)

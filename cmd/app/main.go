@@ -32,7 +32,7 @@ func main() {
 	if Transforms.CompressCoof == -1 && Transforms.Height > 0 {
 		Transforms.CompressCoof = (image.Bounds().Dx() / Transforms.Height) * 2
 	}
-	app.App(image, Transforms, drawer)
+	app.App(image, Transforms, drawer, config.Static)
 	fmt.Println("Width:", image.Bounds().Dx(), "Height:", image.Bounds().Dy())
 	fmt.Println("CompressCoof:", Transforms.CompressCoof, "ColorShift:", config.ColorShift)
 
