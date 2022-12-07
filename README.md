@@ -32,14 +32,15 @@ flags:
 `./play_anim.sh 'file_path/url'`
 
 Required:
-	`ffmpeg`, `magick`, `wget` 
-	instaling gen-rand app
+	
+- `ffmpeg`, `magick`, `wget` 
+- Instaling gen-rand app
 
 Script save cashe to /tmp/genRand
 
 ## Configure script
 
-configure inly ENV)):
+configure only ENV)):
 
 - `SLEEP_TIME` sleep time between frame
 
