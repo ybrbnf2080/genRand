@@ -7,8 +7,8 @@ The algorithm uses decomposition into pixel brightness, and ASCIBrightnessMap.
 
 ## "Install"
 
-1. add your file build to `$PATH` 
-2. rename or create symlink to `gen-rand`
+1. Add your file build to `$PATH` 
+2. Rename or create symlink to `gen-rand`
 
 
 # Using 
@@ -37,9 +37,11 @@ Required:
 
 Script save cashe to /tmp/genRand
 
-## Configure
+	## Configure script
 
-configure inly ENV)):
-	`SLEEP_TIME` sleep time between frame
-	`COLOR_SHIFT` as well as `-color` flag in gen-rand app
+	configure inly ENV)):
+
+		`SLEEP_TIME` sleep time between frame
+
+		`COLOR_SHIFT` as well as `-color` flag in gen-rand app
 	
