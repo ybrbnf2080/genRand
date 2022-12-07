@@ -4,9 +4,16 @@ this utils can convert image to asci matrix.
 
 The algorithm uses decomposition into pixel brightness, and ASCIBrightnessMap.
 
+
+## "Install"
+
+1. add your file build to `$PATH` 
+2. rename or create symlink to `gen-rand`
+
+
 # Using 
 
-`genrang  -flags value pathToImage`
+`gen-rand  -flags value path_to_image`
 
 flags:
 - `-comp`: Compression cooficent
@@ -19,4 +26,20 @@ flags:
 
 - `-h\-w`: Height/widht crop resolution
   - croped to this res
- 
+
+# Anim_sript
+
+`./play_anim.sh 'file_path/url'`
+
+Required:
+	`ffmpeg`, `magick`, `wget` 
+	instaling gen-rand app
+
+Script save cashe to /tmp/genRand
+
+## Configure
+
+configure inly ENV)):
+	`SLEEP_TIME` sleep time between frame
+	`COLOR_SHIFT` as well as `-color` flag in gen-rand app
+	
